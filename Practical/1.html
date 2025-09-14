@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-4(OS)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #ffffff;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h4>Click on a C Program to view its content</h4>
+    
+    <a onclick="showProgram('FIFO.c')">Program 1</a>
+    <a onclick="showProgram('LRU.c')">Program 2</a>
+    <a onclick="showProgram('optimal_page.c')">Program 3</a>
+    <a onclick="showProgram('MFU.c')">Program 4</a>
+    <h3>Program Content:</h3>
+    <pre id="programContent">Click on a program</pre>
+
+    <script>
+        function showProgram(fileName) {
+            fetch(fileName)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("File not found");
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('programContent').textContent = data;
+            })
+            .catch(error => {
+                document.getElementById('programContent').textContent = error;
+            });
+        }
+    </script>
+</body>
+</html>
